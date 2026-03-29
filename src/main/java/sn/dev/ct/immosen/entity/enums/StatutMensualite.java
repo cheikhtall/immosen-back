@@ -4,5 +4,6 @@ public enum StatutMensualite {
     EN_ATTENTE,
     PAYEE,
     PARTIELLEMENT_PAYEE,
-    EN_RETARD
+    EN_RETARD,
+    RESILIE
 }

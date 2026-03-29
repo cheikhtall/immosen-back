@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import sn.dev.ct.immosen.entity.enums.TypeContrat;
+import sn.dev.ct.immosen.entity.enums.TypeDureeContrat;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class Contrat extends BaseEntity{
     private Double caution;
     @Enumerated(EnumType.STRING)
     private TypeContrat typeContrat;
+    @Enumerated(EnumType.STRING)
+    private TypeDureeContrat typeDureeContrat;
     private boolean actif = true;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "locataire_id")

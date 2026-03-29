@@ -11,4 +11,6 @@ public interface MensualiteRepository extends BaseRepository<Mensualite> {
     List<Mensualite> findByStatut(StatutMensualite statut);
     List<Mensualite> findByAnneeAndMois(Integer annee, Integer mois);
     List<Mensualite> findByContratId(Long contractId);
+    boolean existsByContratIdAndMoisAndAnnee(Long id, int mois, int annee);
+    List<Mensualite> findByContratIdOrderByAnneeAscMoisAsc(Long contratId);
 }

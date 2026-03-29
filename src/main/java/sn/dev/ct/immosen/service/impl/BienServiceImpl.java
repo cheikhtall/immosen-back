@@ -1,7 +1,6 @@
 package sn.dev.ct.immosen.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import sn.dev.ct.immosen.dto.BienDTO;
 import sn.dev.ct.immosen.entity.Bien;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 public class BienServiceImpl implements BienService {
 
     private final BienRepository bienRepository;
-    private final BienMapper mapper = Mappers.getMapper(BienMapper.class);
     private final UtilisateurRepository utilisateurRepository;
 
     @Override
@@ -38,16 +36,16 @@ public class BienServiceImpl implements BienService {
         }else{
             throw new BadRequestException("Propriétaire du bien non fourni");
         }
-        Bien bien = mapper.toEntity(bienDTO);
+        Bien bien = BienMapper.toEntity(bienDTO);
         bien.setProprietaire(proprietaire);
         Bien savedBien = bienRepository.save(bien);
-        return mapper.toDTO(savedBien);
+        return BienMapper.toDTO(savedBien);
     }
 
     @Override
     public BienDTO getById(Long id) {
         return bienRepository.findById(id).map(
-                mapper::toDTO
+                BienMapper::toDTO
         ).orElseThrow(() ->new ResourceNotFoundException("Bien", id));
     }
 
@@ -55,7 +53,7 @@ public class BienServiceImpl implements BienService {
     public List<BienDTO> getAll() {
         return bienRepository.findAll()
                 .stream().map(
-                        mapper::toDTO
+                        BienMapper::toDTO
                 ).collect(Collectors.toList());
     }
 
@@ -74,16 +72,13 @@ public class BienServiceImpl implements BienService {
         bien.setStatut(bienDTO.getStatut());
         bien.setDescription(bienDTO.getDescription());
 
-        if (bienDTO.getPhotos() != null) {
-            bien.setPhotos(bien.getPhotos());
-        }
         if(bienDTO.getProprietaireId() != null) {
             Utilisateur proprietaire = utilisateurRepository.findById(bienDTO.getId())
                     .orElseThrow(() ->new ResourceNotFoundException("Utilisateur", bienDTO.getId()));
             bien.setProprietaire(proprietaire);
         }
         Bien updated = bienRepository.save(bien);
-        return mapper.toDTO(updated);
+        return BienMapper.toDTO(updated);
     }
 
     @Override

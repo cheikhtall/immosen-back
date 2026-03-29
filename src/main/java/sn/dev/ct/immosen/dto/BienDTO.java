@@ -36,5 +36,5 @@ public class BienDTO {
 
     private UtilisateurDTO proprietaire;
 
-    private List<String> photos;
+    private List<PhotoDTO> photos;
 }

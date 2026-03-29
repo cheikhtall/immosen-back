@@ -7,5 +7,7 @@ import java.util.List;
 public interface PaiementService {
     PaiementDTO create(PaiementDTO paiementDTO);
     List<PaiementDTO> getPaiementsByContrat(Long contratId);
-    PaiementDTO payerMensualite(Long paiementId);
+    void payerMensualite(Long mensualiteId, Double montant, String modePaiement);
+    void payerPlusieursMensualites(Long contratId, Double montant, String modePaiement);
+    void annulerPaiement(Long paiementId);
 }

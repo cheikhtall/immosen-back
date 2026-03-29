@@ -23,6 +23,8 @@ public class ContratDTO {
 
     private String typeContrat;
 
+    private String typeDureeContrat;
+
     private Boolean actif;
 
     private Long locataireId;

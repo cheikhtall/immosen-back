@@ -11,10 +11,10 @@ import sn.dev.ct.immosen.security.service.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthApi {
+public class AuthController {
     private final AuthenticationService authenticationService;
 
-    public AuthApi(AuthenticationService authenticationService) {
+    public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 

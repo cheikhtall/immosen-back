@@ -1,6 +1,7 @@
 package sn.dev.ct.immosen.dto;
 
 import lombok.*;
+import sn.dev.ct.immosen.entity.enums.StatutMensualite;
 
 import java.time.LocalDate;
 
@@ -20,7 +21,7 @@ public class MensualiteDTO {
 
     private Double montantPaye;
 
-    private String statut;
+    private StatutMensualite statut;
 
     private LocalDate dateEcheance;
 

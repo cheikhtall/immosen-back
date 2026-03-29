@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/biens")
-public class BienApi {
+public class BienController {
     private final BienService bienService;
     private final PhotoService photoService;
 
-    public BienApi(BienService bienService, PhotoService photoService) {
+    public BienController(BienService bienService, PhotoService photoService) {
         this.bienService = bienService;
         this.photoService = photoService;
     }
@@ -26,7 +26,7 @@ public class BienApi {
         return ResponseEntity.ok(bienService.create(bienDTO));
     }
 
-    @PutMapping
+    @PutMapping(path = "/{id}")
     public ResponseEntity<BienDTO> update(@PathVariable Long id,
                                           @RequestBody BienDTO dto) {
         return ResponseEntity.ok(bienService.update(dto, id));
@@ -41,6 +41,13 @@ public class BienApi {
     public ResponseEntity<List<BienDTO>> getAll() {
         return ResponseEntity.ok(bienService.getAll());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        bienService.delete(id);
+        return ResponseEntity.ok("Bien " + id + " supprimé");
+    }
+
 
     @PostMapping("/{id}/photo")
     public ResponseEntity<String> uploadPhoto(

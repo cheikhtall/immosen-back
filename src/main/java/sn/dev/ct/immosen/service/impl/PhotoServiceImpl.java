@@ -1,6 +1,5 @@
 package sn.dev.ct.immosen.service.impl;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import sn.dev.ct.immosen.dto.PhotoDTO;
@@ -26,7 +25,6 @@ public class PhotoServiceImpl implements PhotoService {
 
     private final String uploadDir = "/images";
     private final PhotoRepository photoRepository;
-    private final PhotoMapper mapper = Mappers.getMapper(PhotoMapper.class);
     private final BienRepository bienRepository;
     private final ImageStorageService imageStorageService;
 
@@ -105,12 +103,12 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public List<PhotoDTO> getPhotosByBien(Long bienId) {
         return photoRepository.findByBienId(bienId)
-                .stream().map(mapper::toDTO).collect(Collectors.toList());
+                .stream().map(PhotoMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
     public List<PhotoDTO> getPhotosByUtilisateur(Long utilisateurId) {
         return photoRepository.findByUtilisateurId(utilisateurId)
-                .stream().map(mapper::toDTO).collect(Collectors.toList());
+                .stream().map(PhotoMapper::toDto).collect(Collectors.toList());
     }
 }

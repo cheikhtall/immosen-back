@@ -21,13 +21,11 @@ import java.util.stream.Collectors;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     private final UtilisateurRepository utilisateurRepository;
-    private final PhotoMapper photoMapper;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository,
-                                  PhotoMapper photoMapper) {
+    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository
+                                  ) {
         this.utilisateurRepository = utilisateurRepository;
-        this.photoMapper = photoMapper;
     }
 
     @Override
@@ -44,7 +42,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         List<Photo> photos = new ArrayList<>();
         if (dto.getPhotos() != null) {
             for (var photoDto : dto.getPhotos()) {
-                var photo = photoMapper.toEntity(photoDto);
+                var photo = PhotoMapper.toEntity(photoDto);
                 photo.setUtilisateur(utilisateur); // <-- important
                 photos.add(photo);
             }
@@ -84,8 +82,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setRole(dto.getRole());
         List<Photo> photos = new ArrayList<>();
         dto.getPhotos().stream().forEach(photo -> {
-            photoMapper.toEntity(photo);
-            photos.add(photoMapper.toEntity(photo));
+            PhotoMapper.toEntity(photo);
+            photos.add(PhotoMapper.toEntity(photo));
         });
         utilisateur.setPhotos(photos);
         return UtilisateurMapper.toDto(utilisateurRepository.save(utilisateur));

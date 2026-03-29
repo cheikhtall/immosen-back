@@ -52,5 +52,4 @@ public class Utilisateur extends BaseEntity implements UserDetails {
 }
 
 
-
 // MDP ====> 2ZU*P5BX

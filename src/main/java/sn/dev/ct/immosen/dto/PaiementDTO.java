@@ -1,6 +1,7 @@
 package sn.dev.ct.immosen.dto;
 
 import lombok.*;
+import sn.dev.ct.immosen.entity.enums.ModePaiement;
 
 import java.time.LocalDateTime;
 
@@ -16,9 +17,9 @@ public class PaiementDTO {
 
     private Double montant;
 
-    private String modePaiement;
+    private ModePaiement modePaiement;
 
-    private String referenceTransaction;
+    private String referencePaiement;
 
     private Long mensualiteId;
 

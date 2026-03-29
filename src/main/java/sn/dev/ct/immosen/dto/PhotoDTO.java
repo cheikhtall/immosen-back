@@ -1,6 +1,7 @@
 package sn.dev.ct.immosen.dto;
 
 import lombok.*;
+import sn.dev.ct.immosen.entity.enums.TypePhoto;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +15,7 @@ public class PhotoDTO {
 
     private String chemin;
 
-    private String type;
+    private TypePhoto type;
 
     private Boolean estPrincipale;
 }

@@ -30,5 +30,6 @@ public class Mensualite extends BaseEntity {
     private Contrat contrat;
     @OneToMany(mappedBy = "mensualite", cascade = CascadeType.ALL)
     private List<Paiement> paiements = new ArrayList<>();
+
     public Mensualite() {}
 }
