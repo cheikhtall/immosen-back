@@ -52,7 +52,7 @@ public class ContratServiceImpl implements ContratService {
                 () -> new ResourceNotFoundException("Utilisateur", contratDTO.getLocataireId())
         );
         TypeContrat typeContrat = TypeContrat.valueOf(contratDTO.getTypeContrat());
-        TypeDureeContrat typeDureeContrat = null;
+        TypeDureeContrat typeDureeContrat;
         if(typeContrat == TypeContrat.LOCATION){
             if(contratDTO.getTypeDureeContrat() == null){
                 throw new RuntimeException("Type de durée est obligatoire pour une location");

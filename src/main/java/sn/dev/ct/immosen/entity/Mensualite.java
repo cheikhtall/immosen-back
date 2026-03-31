@@ -25,6 +25,7 @@ public class Mensualite extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private StatutMensualite statut = StatutMensualite.EN_ATTENTE;
     private Double penalite = 0.0;
+    private LocalDate derniereNotification;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contrat_id")
     private Contrat contrat;
