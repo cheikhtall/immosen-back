@@ -127,7 +127,6 @@ public class ContratServiceImpl implements ContratService {
                 .toList();
 
         mensualiteRepository.deleteAll(aSupprimer);
-
         contratRepository.save(contrat);
     }
 }
